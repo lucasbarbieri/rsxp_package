@@ -5,6 +5,7 @@ Fala Dev! Tudo bem? Vamos começar nosso exercício e para isso você precisará
 
 1) Vamos instalar algumas dependências antes de iniciar
 <code>https://www.npmjs.com/get-npm</code>
+
 Dentro da pasta <code>backend</code> execute: <code>npm install mysql --save</code>
 * Se preferir, você também pode instalar pelo seu gerenciador de pacotes.
 
@@ -78,29 +79,46 @@ Na segunda linha do arquivo, inclua a instrução: <code>const CustomerModel = u
 Agora, vamos criar a primeira função para recuperar todos os registros da base:
 ```javascript
 async all({ request, response }) {
-  const customers = await CustomerModel.all();
-  return response.status(200).json(customers);
-}
+    let status = 200;
+    let customers = await CustomerModel.all();
+    if (!customers) {
+      status = 404;
+      customers = [];
+    }
+
+    return response.status(status).json(customers);
+  }
 ```
 
 Segunda função para incluir um novo registro:
 ```javascript
 async create({ request, response }) {
-  const params = request.only(["name", "email", "gender"]);
-  const customers = await CustomerModel.create(params);
-  return response.status(200).json(customers);
-}
+    let status = 200;
+    const params = request.only(["name", "email", "gender"]);
+    const customer = await CustomerModel.create(params);
+    return response.status(status).json(customer);
+  }
 ```
 
 Terceira função para encontrar um registro pelo seu ID:
 ```javascript
-async find({ request, response }) {
-  if (!request.id) {
-    return response.status(400).json("Você deve informar o ID para buscar.");
+async find({ params, response }) {
+    let status = 200;
+    let customer = [];
+    if (!params.id) {
+      status = 400;
+      customer = "Você deve fornecer um ID para buscar.";
+    } else {
+      customer = await CustomerModel.find(params.id);
+
+      if (!customer) {
+        status = 404;
+        customer = "Nenhum registro encontrado.";
+      }
+    }
+
+    return response.status(status).json(customer);
   }
-  const customer = await CustomerModel.find(request.id);
-  return response.status(200).json(customer);
-}
 ```
 
 Seu arquivo <code>CustomerController.js</code> deverá estar assim:
@@ -111,27 +129,43 @@ const CustomerModel = use("App/Models/Customer");
 
 class CustomerController {
   async all({ request, response }) {
-    const customers = await CustomerModel.all();
-    return response.status(200).json(customers);
+    let status = 200;
+    let customers = await CustomerModel.all();
+    if (!customers) {
+      status = 404;
+      customers = [];
+    }
+
+    return response.status(status).json(customers);
   }
 
   async create({ request, response }) {
+    let status = 200;
     const params = request.only(["name", "email", "gender"]);
-    const customers = await CustomerModel.create(params);
-    return response.status(200).json(customers);
+    const customer = await CustomerModel.create(params);
+    return response.status(status).json(customer);
   }
 
-  async find({ request, response }) {
-    if (!request.id) {
-      return response.status(400).json("Você deve informar o ID para buscar.");
+  async find({ params, response }) {
+    let status = 200;
+    let customer = [];
+    if (!params.id) {
+      status = 400;
+      customer = "Você deve fornecer um ID para buscar.";
+    } else {
+      customer = await CustomerModel.find(params.id);
+
+      if (!customer) {
+        status = 404;
+        customer = "Nenhum registro encontrado.";
+      }
     }
-    const customer = await CustomerModel.find(request.id);
-    return response.status(200).json(customer);
+
+    return response.status(status).json(customer);
   }
 }
 
 module.exports = CustomerController;
-
 ```
 
 

@@ -52,7 +52,7 @@ Route.group(() => {
 Pelo seu terminal, dentro da pasta: <code>backend</code> digite o seguinte comando:
 <code>adonis make:controller CustomerController</code>
 Em seguida, ele pedirá para você selecionar o tipo do controller: HTTP ou Websocket. <b>Selecione HTTP</b>. 
-Após isso você verá que um novo arquivo (CustomerController.js) foi criado na pasta: <code>backend/Controllers</code>
+Após isso você verá que um novo arquivo (CustomerController.js) foi criado na pasta: <code>backend/app/Controllers</code>
 
 # Backend: Criando nosso model
 Pelo seu terminal, dentro da pasta: <code>backend</code> digite o seguinte comando:

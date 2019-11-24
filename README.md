@@ -3,9 +3,7 @@ Exercício de migração para NodeJS e ReactJs
 
 Fala Dev! Tudo bem? Vamos começar nosso exercício e para isso você precisará ter instalado na sua maquina o NODE.
 
-1) Vamos instalar algumas dependências antes de iniciar
-<code>https://www.npmjs.com/get-npm</code>
-* Se preferir, você também pode instalar pelo seu gerenciador de pacotes.
+1) Você precisa ter o NODE e NPM instalados no seu sistema operacional para continuar
 
 2) Clone este repositório em algum lugar do seu computador
 

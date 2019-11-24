@@ -43,6 +43,8 @@ Route.group(() => {
 }).prefix("api/v1");
 ```
 
+* Após a configuração das rotas precisamos desligar a proteção nativa CSRF TOKEN apenas para rotas em API. Para isso, acesse: <code>config/shield.js</code> e altere a chave <b>filterUris</b> para <code>filterUris: ['/api/(.*)']</code>
+
 # Backend: Criando o controller
 
 Pelo seu terminal, dentro da pasta: <code>backend</code> digite o seguinte comando:

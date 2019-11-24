@@ -32,13 +32,14 @@ A pasta frontend possui uma aplicação pura em <b>ReactJs</b>
 # Backend: Criando as rotas
 
 Acesse o arquivo: <code>backend/start/routes.js</code>
-Abaixo da rota <i>welcome</i> crie as seguintes novas rotas: 
-
-<code>Route.get("api/v1/customer/all", "CustomerController.all");</code>
-
-<code>Route.post("api/v1/customer/create", "CustomerController.create");</code>
-
-<code>Route.get("api/v1/customer/:id", "CustomerController.find");</code>
+Abaixo da rota padrão: <i>welcome</i> crie um grupo com prefixo: <code>api/v1</code> contendo as seguintes rotas:
+```javascript
+Route.group(() => {
+  Route.get("customer/all", "CustomerController.get");
+  Route.post("customer/create", "CustomerController.create");
+  Route.get("customer/:id", "CustomerController.find");
+}).prefix("api/v1");
+```
 
 # Backend: Criando o controller
 
@@ -59,11 +60,77 @@ Sobrescrever o nome da tabela padrão:
 Campos que poderão ser incluídos de forma ágil na criação de um modelo:
 <code>protected $fillable = ['name','email','gender'];</code>
 
+```javascript
+class Customer extends Model {
+  protected $table = 'customers';
+  protected $fillable = ['name','email','gender'];
+}
+```
+
 # Backend: Criando as funções
 
 Com o <code>CustomerController.js</code> criado, vamos começar a trabalhar nele.
 Primeiro devemos importar o nosso model para que possamos acessar os recursos do nosso banco de dados, vamos lá:
+
 Na segunda linha do arquivo, inclua a instrução: <code>const CustomerModel = use('App/Models/Customer');</code>
 
 Agora, vamos criar a primeira função para recuperar todos os registros da base:
+```javascript
+async all({ request, response }) {
+  const customers = await CustomerModel.all();
+  return response.status(200).json(customers);
+}
+```
+
+Segunda função para incluir um novo registro:
+```javascript
+async create({ request, response }) {
+  const params = request.only(["name", "email", "gender"]);
+  const customers = await CustomerModel.create(params);
+  return response.status(200).json(customers);
+}
+```
+
+Terceira função para encontrar um registro pelo seu ID:
+```javascript
+async find({ request, response }) {
+  if (!request.id) {
+    return response.status(400).json("Você deve informar o ID para buscar.");
+  }
+  const customer = await CustomerModel.find(request.id);
+  return response.status(200).json(customer);
+}
+```
+
+Seu arquivo <code>CustomerController.js</code> deverá estar assim:
+```javascript
+"use strict";
+
+const CustomerModel = use("App/Models/Customer");
+
+class CustomerController {
+  async all({ request, response }) {
+    const customers = await CustomerModel.all();
+    return response.status(200).json(customers);
+  }
+
+  async create({ request, response }) {
+    const params = request.only(["name", "email", "gender"]);
+    const customers = await CustomerModel.create(params);
+    return response.status(200).json(customers);
+  }
+
+  async find({ request, response }) {
+    if (!request.id) {
+      return response.status(400).json("Você deve informar o ID para buscar.");
+    }
+    const customer = await CustomerModel.find(request.id);
+    return response.status(200).json(customer);
+  }
+}
+
+module.exports = CustomerController;
+
+```
+
 

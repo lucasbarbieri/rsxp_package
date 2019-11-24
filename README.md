@@ -5,11 +5,13 @@ Fala Dev! Tudo bem? Vamos começar nosso exercício e para isso você precisará
 
 1) Vamos instalar algumas dependências antes de iniciar
 <code>https://www.npmjs.com/get-npm</code>
-
-Dentro da pasta <code>backend</code> execute: <code>npm install mysql --save</code>
 * Se preferir, você também pode instalar pelo seu gerenciador de pacotes.
 
-2) Você vai notar que dentro deste pacote existem duas pastas:
+2) Clone este repositório em algum lugar do seu computador
+
+3) Dentro da pasta <code>backend</code> execute: <code>npm install mysql --save</code>
+
+4) Você vai notar que dentro deste pacote existem duas pastas:
 - Backend
 - Frontend
 

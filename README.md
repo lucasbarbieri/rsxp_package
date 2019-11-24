@@ -25,7 +25,9 @@ A pasta frontend possui uma aplicação simples em <b>ReactJs</b>
 
 - Dentro da pasta backend, execute o comando <code>npm install</code> para instalar as dependêndencias.
 
-- Após finalizado, execute o comando: <code>adonis serve --dev</code>. Logo após isso sua aplicaço deverá estar funcionando no endereço: <code>http://127.0.0.1:9987</code>
+- Quando a instalação terminar, copie o arquivo .env.example no mesmo diretorio com o nome .env
+
+- Após copiar, execute o comando: <code>adonis serve --dev</code>. Logo após isso sua aplicaço deverá estar funcionando no endereço: <code>http://127.0.0.1:9987</code>
 
 - Após finalizado criaremos uma estrutura composta por: 
 

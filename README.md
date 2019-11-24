@@ -30,3 +30,40 @@ A pasta frontend possui uma aplicação pura em <b>ReactJs</b>
 - Um Model
 
 # Backend: Criando as rotas
+
+Acesse o arquivo: <code>backend/start/routes.js</code>
+Abaixo da rota <i>welcome</i> crie as seguintes novas rotas: 
+
+<code>Route.get("api/v1/customer/all", "CustomerController.all");</code>
+
+<code>Route.post("api/v1/customer/create", "CustomerController.create");</code>
+
+<code>Route.get("api/v1/customer/:id", "CustomerController.find");</code>
+
+# Backend: Criando o controller
+
+Pelo seu terminal, dentro da pasta: <code>backend</code> digite o seguinte comando:
+<code>adonis make:controller CustomerController</code>
+Em seguida, ele pedirá para você selecionar o tipo do controller: HTTP ou Websockt. <b>Selecione HTTP</b>. 
+Após isso você verá que um novo arquivo (CustomerController.js) foi criado na pasta: <code>backend/Controllers</code>
+
+# Backend: Criando nosso model
+Pelo seu terminal, dentro da pasta: <code>backend</code> digite o seguinte comando:
+<code>adonis make:model Customer</code>
+Após isso você verá que um novo arquivo (Customer.js) foi criado na pasta: <code>backend/Models</code>
+Dentro da declaração da classe, você incluirá as seguintes instruções:
+
+Sobrescrever o nome da tabela padrão:
+<code>protected $table = 'customers';</code>
+
+Campos que poderão ser incluídos de forma ágil na criação de um modelo:
+<code>protected $fillable = ['name','email','gender'];</code>
+
+# Backend: Criando as funções
+
+Com o <code>CustomerController.js</code> criado, vamos começar a trabalhar nele.
+Primeiro devemos importar o nosso model para que possamos acessar os recursos do nosso banco de dados, vamos lá:
+Na segunda linha do arquivo, inclua a instrução: <code>const CustomerModel = use('App/Models/Customer');</code>
+
+Agora, vamos criar a primeira função para recuperar todos os registros da base:
+

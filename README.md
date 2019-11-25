@@ -28,3 +28,9 @@ Fala Dev! Tudo bem? Vamos começar nosso exercício:
 
 - Retorna um único registro
   <code>GET: http://127.0.0.1:9987/api/v1/customer/(ID)</code>
+
+  # Vamos configurar nosso frontend
+
+  Para iniciar o frontend você deve acessar a pasta <code>frontend</code> e executar o comando: <code>npm install</code> para instalar as dependências do projeto.
+
+  Feito isso, rode então o comando <code>npm start</code> e o serviço deverá abrir automaticamente no seu navegador padrão. Caso isso não aconteça você pode copiar a URL exibida no seu terminal e usa-la no seu navegador.

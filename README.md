@@ -34,3 +34,14 @@ Fala Dev! Tudo bem? Vamos começar nosso exercício:
   Para iniciar o frontend você deve acessar a pasta <code>frontend</code> e executar o comando: <code>npm install</code> para instalar as dependências do projeto.
 
   Feito isso, rode então o comando <code>npm start</code> e o serviço deverá abrir automaticamente no seu navegador padrão. Caso isso não aconteça você pode copiar a URL exibida no seu terminal e usa-la no seu navegador.
+
+  # Banco de dados
+
+  Deixei um banco de dados previamente criado. Neste banco existe apenas uma tabela customer. Nesse banco você poderá criar uma nova tabela e replicar uma situação do seu dia a dia com um projeto ou linguagem que gostaria de migrar para NODE e REACTJS.
+
+  HOST: <code>mysql11-farm76.kinghost.net</code>
+  USER: <code>incentivar01</code>
+  PASS: <code>rocketseatXP9</code>
+  DB: <code>incentivar01</code>
+
+  \*\* Caso deseje utilizar um banco de sua preferência, fique a vontade!

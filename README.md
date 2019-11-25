@@ -2,15 +2,15 @@
 
 Exercício de migração para NodeJS e ReactJs
 
-Fala Dev! Tudo bem? Vamos começar nosso exercício e para isso você precisará ter instalado na sua maquina o NODE.
+Fala Dev! Tudo bem? Vamos começar nosso exercício:
 
 1. Você precisa ter o NODE e NPM instalados no seu sistema operacional para continuar
 
-2. Clone este repositório em algum lugar do seu computador
+2. Faça download deste repositório em algum lugar do seu computador
 
 3. Dentro da pasta <code>backend</code> execute: <code>npm install mysql --save</code>
 
-# Vamos iniciar pelo backend, deixando nossa API pronta para entregar dados ao nosso frontend:
+# Vamos configurar nosso backend
 
 - Dentro da pasta backend, execute o comando <code>npm install</code> para instalar as dependêndencias.
 

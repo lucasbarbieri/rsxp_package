@@ -37,11 +37,11 @@ Fala Dev! Tudo bem? Vamos começar nosso exercício:
 
   # Banco de dados
 
-  Deixei um banco de dados previamente criado. Neste banco existe apenas uma tabela customer. Nesse banco você poderá criar uma nova tabela e replicar uma situação do seu dia a dia com um projeto ou linguagem que gostaria de migrar para NODE e REACTJS.
+  Deixei um banco de dados mySQL previamente criado. Neste banco existe apenas uma tabela customer. Nesse banco você poderá criar uma nova tabela e replicar uma situação do seu dia a dia com um projeto ou linguagem que gostaria de migrar para NODE e REACTJS.
 
-  HOST: <code>mysql11-farm76.kinghost.net</code>
-  USER: <code>incentivar01</code>
-  PASS: <code>rocketseatXP9</code>
-  DB: <code>incentivar01</code>
+  - HOST: <code>mysql11-farm76.kinghost.net</code>
+  - USER: <code>incentivar01</code>
+  - PASS: <code>rocketseatXP9</code>
+  - DB: <code>incentivar01</code>
 
   \*\* Caso deseje utilizar um banco de sua preferência, fique a vontade!

@@ -1,22 +1,26 @@
 # RocketSeat Experience
+
 Exercício de migração para NodeJS e ReactJs
 
 Fala Dev! Tudo bem? Vamos começar nosso exercício e para isso você precisará ter instalado na sua maquina o NODE.
 
-1) Você precisa ter o NODE e NPM instalados no seu sistema operacional para continuar
+1. Você precisa ter o NODE e NPM instalados no seu sistema operacional para continuar
 
-2) Clone este repositório em algum lugar do seu computador
+2. Clone este repositório em algum lugar do seu computador
 
-3) Dentro da pasta <code>backend</code> execute: <code>npm install mysql --save</code>
+3. Dentro da pasta <code>backend</code> execute: <code>npm install mysql --save</code>
 
-4) Você vai notar que dentro deste pacote existem duas pastas:
+4. Você vai notar que dentro deste pacote existem duas pastas:
+
 - Backend
 - Frontend
 
 # Backend
+
 O backend possui uma instalação do <b>AdonisJs</b> (Framework Node: https://adonisjs.com/)
 
 # Frontend
+
 A pasta frontend possui uma aplicação simples em <b>ReactJs</b>
 
 # Vamos iniciar pelo backend, deixando nossa API pronta para entregar dados ao nosso frontend:
@@ -27,7 +31,7 @@ A pasta frontend possui uma aplicação simples em <b>ReactJs</b>
 
 - Após copiar, execute o comando: <code>adonis serve --dev</code>. Logo após isso sua aplicaço deverá estar funcionando no endereço: <code>http://127.0.0.1:9987</code>
 
-- Após finalizado criaremos uma estrutura composta por: 
+- Após finalizado criaremos uma estrutura composta por:
 
 - Três rotas (/all,/create,/:id)
 - Um Controller com três funções
@@ -37,6 +41,7 @@ A pasta frontend possui uma aplicação simples em <b>ReactJs</b>
 
 Acesse o arquivo: <code>backend/start/routes.js</code>
 Abaixo da rota padrão: <i>welcome</i> crie um grupo com prefixo: <code>api/v1</code> contendo as seguintes rotas:
+
 ```javascript
 Route.group(() => {
   Route.get("customer/all", "CustomerController.all");
@@ -45,16 +50,17 @@ Route.group(() => {
 }).prefix("api/v1");
 ```
 
-* Após a configuração das rotas precisamos desligar a proteção nativa CSRF TOKEN apenas para rotas em API. Para isso, acesse: <code>config/shield.js</code> e altere a chave <b>filterUris</b> para <code>filterUris: ['/api/(.*)']</code>
+- Após a configuração das rotas precisamos desligar a proteção nativa CSRF TOKEN apenas para rotas em API. Para isso, acesse: <code>config/shield.js</code> e altere a chave <b>filterUris</b> para <code>filterUris: ['/api/(.*)']</code>
 
 # Backend: Criando o controller
 
 Pelo seu terminal, dentro da pasta: <code>backend</code> digite o seguinte comando:
 <code>adonis make:controller CustomerController</code>
-Em seguida, ele pedirá para você selecionar o tipo do controller: HTTP ou Websocket. <b>Selecione HTTP</b>. 
+Em seguida, ele pedirá para você selecionar o tipo do controller: HTTP ou Websocket. <b>Selecione HTTP</b>.
 Após isso você verá que um novo arquivo (CustomerController.js) foi criado na pasta: <code>backend/app/Controllers</code>
 
 # Backend: Criando nosso model
+
 Pelo seu terminal, dentro da pasta: <code>backend</code> digite o seguinte comando:
 <code>adonis make:model Customer</code>
 Após isso você verá que um novo arquivo (Customer.js) foi criado na pasta: <code>backend/Models</code>
@@ -67,6 +73,7 @@ Primeiro devemos importar o nosso model para que possamos acessar os recursos do
 Na segunda linha do arquivo, inclua a instrução: <code>const CustomerModel = use('App/Models/Customer');</code>
 
 Agora, vamos criar a primeira função para recuperar todos os registros da base:
+
 ```javascript
 async all({ request, response }) {
     let status = 200;
@@ -81,6 +88,7 @@ async all({ request, response }) {
 ```
 
 Segunda função para incluir um novo registro:
+
 ```javascript
 async create({ request, response }) {
     let status = 200;
@@ -91,6 +99,7 @@ async create({ request, response }) {
 ```
 
 Terceira função para encontrar um registro pelo seu ID:
+
 ```javascript
 async find({ params, response }) {
     let status = 200;
@@ -112,6 +121,7 @@ async find({ params, response }) {
 ```
 
 Seu arquivo <code>CustomerController.js</code> deverá estar assim:
+
 ```javascript
 "use strict";
 
@@ -159,11 +169,101 @@ module.exports = CustomerController;
 ```
 
 ## Pronto! Nosso backend (API) está pronto para criar e fornecer os dados para o frontend.
+
 - Entrega todos os registros
-<code>GET: http://127.0.0.1:9987/api/v1/customer/all</code>
+  <code>GET: http://127.0.0.1:9987/api/v1/customer/all</code>
 
 - Cria um novo registro
-<code>POST: http://127.0.0.1:9987/api/v1/customer/create</code>
+  <code>POST: http://127.0.0.1:9987/api/v1/customer/create</code>
 
 - Retorna um único registro
-<code>GET: http://127.0.0.1:9987/api/v1/customer/(ID)</code>
+  <code>GET: http://127.0.0.1:9987/api/v1/customer/(ID)</code>
+
+# Frontend: Vamos criar nosso frontend para consumir a API que acabamos de criar
+
+Dentro da pasta <code>frontend</code> pelo terminal execute o comando <code>npm install</code> para instalarmos as dependências necessárias para aplicação funcionar.
+
+Após isso, vamos executar o comando <code>npm start</code> e o projeto iniciará em um endereço mostrado em seu terminal. A aplicação deve abrir automaticamente, caso isso não aconteça, copie a URL do terminal e abra no seu navegador.
+
+Vamos criar agora nosso componente que fará a gestão de listagem dos nossos registros
+
+- Dentro da pasta <code>src</code> criaremos uma nova pasta chamada components <code>frontend/src/components</code>
+
+- Dentro da pasta <code>components</code> que acabamos de criar, vamos incluir uma nova pasta chamada <code>List</code>.
+
+- Dentro da pasta <code>frontend/src/components/List</code> criaremos um arquivo <code>index.js</code> e declararemos as seguintes informações nesse novo componente:
+
+```javascript
+import React from "react";
+
+class List extends React.Component {
+  render() {
+    return (
+      <div>
+        <header>
+          <h1>Listagem de registros</h1>
+          <div>
+            <button>Novo Registro</button>
+          </div>
+        </header>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Genêro</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    );
+  }
+}
+
+export default List;
+```
+
+Agora vamos abrir o arquivo: <code>frontend/src/App.js</code> e vamos remover toda a sua estrutura dentro do <code>return</code> e o import do logo no topo. Mantendo o desta forma:
+
+```javascript
+import React from "react";
+import "./App.css";
+
+
+function App() {
+  return (
+
+  );
+}
+
+export default App;
+
+```
+
+Vamos importar agora o componente de listagem que já criamos, o <code>frontend/src/components/List</code> logo no início do nosso arquivo desta forma:
+
+```javascript
+import React from "react";
+import "./App.css";
+import List from "./components/List";
+```
+
+Agora dentro do <code>return</code> que deixamos vazio, vamos incluir nosso novo componente, o seu arquivo deverá ficar desta forma:
+
+```javascript
+import React from "react";
+import "./App.css";
+import List from "./components/List";
+
+function App() {
+  return (
+    <div>
+      <List />
+    </div>
+  );
+}
+
+export default App;
+```

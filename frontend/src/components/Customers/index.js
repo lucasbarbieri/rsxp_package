@@ -34,8 +34,8 @@ const styles = {
   },
   fab: {
     position: "absolute",
-    bottom: 0,
-    right: 10
+    bottom: 20,
+    right: 20
   },
   formControl: {
     width: "50%"

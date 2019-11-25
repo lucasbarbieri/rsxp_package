@@ -21,13 +21,13 @@ Fala Dev! Tudo bem? Vamos começar nosso exercício:
 ## Pronto! Nosso backend (API) está pronto para criar e fornecer os dados para o frontend.
 
 - Entrega todos os registros
-  <code>GET: http://127.0.0.1:9987/api/v1/customer/all</code>
+  <code>GET: http://127.0.0.1:9987/api/v1/customers/all</code>
 
 - Cria um novo registro
-  <code>POST: http://127.0.0.1:9987/api/v1/customer/create</code>
+  <code>POST: http://127.0.0.1:9987/api/v1/customers/create</code>
 
 - Retorna um único registro
-  <code>GET: http://127.0.0.1:9987/api/v1/customer/(ID)</code>
+  <code>GET: http://127.0.0.1:9987/api/v1/customers/(ID)</code>
 
   # Vamos configurar nosso frontend
 

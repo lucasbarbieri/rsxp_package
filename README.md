@@ -14,7 +14,9 @@ Fala Dev! Tudo bem? Vamos começar nosso exercício:
 
 - Dentro da pasta backend, execute o comando <code>npm install</code> para instalar as dependêndencias.
 
-- Quando a instalação terminar, copie o arquivo .env.example no mesmo diretorio com o nome .env
+- Quando a instalação terminar, copie o arquivo <code>.env.example</code> no mesmo diretorio com o nome <code>.env</code>
+
+- Execute o comando <code>npm i -g @adonisjs/cli</code> na pasta <code>backend</code> para instalar o cliente do framework.
 
 - Após copiar, execute o comando: <code>adonis serve --dev</code>. Logo após isso sua aplicaço deverá estar funcionando no endereço: <code>http://127.0.0.1:9987</code>
 
